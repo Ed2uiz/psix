@@ -50,7 +50,7 @@ def process_SJ_table(cell_sj_file, cell, dtype):
             for line in fh:
                 idx, sj_counts = process_SJ_line(line, idx, sj_counts)
     else:
-        with open(sj_file, 'r') as fh:
+        with open(cell_sj_file, 'r') as fh:
             for line in fh:
                 idx, sj_counts = process_SJ_line(line, idx, sj_counts)
             
