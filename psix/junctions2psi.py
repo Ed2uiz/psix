@@ -26,16 +26,17 @@ def read_intron_file(intron_file):
 def process_SJ_line(line, idx, sj_counts):
     line = line.decode().rstrip().split('\t')
 
-    if line[3] == '1':
-        strand = '+'
-    elif line[3] == '2':
-        strand = '-'
-    else:
-        return idx, sj_counts
-
+    # if line[3] == '1':
+    #     strand = '+'
+    # elif line[3] == '2':
+    #     strand = '-'
+    # else:
+    #     return idx, sj_counts
+    strand = '+' # for testing purposes
     intron_idx = line[0] + ':' + line[1] + '-' + line[2] + ':' + strand
     idx.append(intron_idx)
-    sj_counts.append(int(line[6]))
+    # sj_counts.append(int(line[6]))
+    sj_counts.append(int(line[3])) # modified sj.out.tab file
     
     return idx, sj_counts
 
@@ -65,7 +66,7 @@ def get_SJ_table(rnaseq_dir, intron_file, cell_list, dtype):
         cells = cell_list
         
     else:
-        cells = sorted([x.split('.')[0] for x in os.listdir(rnaseq_dir)])
+        cells = sorted([x.split('.')[0] for x in os.listdir(rnaseq_dir)])  # 
     
     series_list = []
     
